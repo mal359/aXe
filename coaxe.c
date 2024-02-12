@@ -37,6 +37,7 @@ extern char *sys_errlist[];
 #endif
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "util.h"
 
@@ -111,14 +112,7 @@ int main(argc, argv)
     char *property, *maxp, *p;
     Window window;
     XEvent event;
-
-#if defined(SYSV) || defined(SVR4)
-    extern char *getcwd();
-#define getwd(a) getcwd(a,MAXPATHLEN)
-#else
-    extern char *getwd();
-#endif
-
+    
     r = (r = rindex(argv[0], '/')) ? ++r : argv[0];
     coaxe = strncmp(r, "coaxe", 5) == 0;
     faxe = strncmp(r, "faxe", 4) == 0;
@@ -174,10 +168,10 @@ int main(argc, argv)
 	}
     }
 
-    if (!getwd(cwd))
+    if (!getcwd(cwd, 0))
     {
 	fprintf(stderr, "Current directory unreadable\n" );
-	exit(1);
+	return(1);
     }
     
     property = malloc((unsigned) MAXPATHLEN * sizeof(char));

@@ -58,13 +58,13 @@ extern char *sys_errlist[];
 #endif
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #ifdef EXTENSION
 #include "Language.h"
 #endif
 
 #include "AxeEditorP.h"
-extern char *getenv();
 
 #include "regexp.h"
 #include "util.h"
@@ -408,15 +408,6 @@ ClassInitialize()
 {
     char *dir;
 
-#if defined(SYSV) || defined(SVR4)
-    extern char *getcwd();
-#define getwd(buf) getcwd(buf,MAXPATHLEN)
-#else
-    extern char *getwd();
-#endif
-
-    extern char *getenv();
-
     EDITORS = NULL;
     NUMBEROFEDITORS = 0;
     MAXEDITORS = 0;
@@ -437,7 +428,7 @@ ClassInitialize()
     CLASS(home_dir_len) = strlen(CLASS(home_dir));
 
     CLASS(current_dir) = XtMalloc(MAXPATHLEN);
-    if (!getwd(CLASS(current_dir)))
+    if (!getcwd(CLASS(current_dir), 0))
     {
 	if (CLASS(home_dir))
 	{

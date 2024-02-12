@@ -61,6 +61,8 @@
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 extern char *getenv();
 
@@ -390,13 +392,6 @@ Initialize(req, new, args, num_args)
     String dir;
     Dimension width, height;
 
-#if defined(SYSV) || defined(SVR4)
-    extern char *getcwd();
-#define getwd(buf) getcwd(buf,MAXPATHLEN)
-#else
-    extern char *getwd();
-#endif
-
     List(new) = NULL;
     Nomination(new).directoryPart = NULL;
     Nomination(new).filenamePart = NULL;
@@ -414,7 +409,7 @@ Initialize(req, new, args, num_args)
 
     if (!(*(CurrentDir(new))))
     {
-	if (!getwd(CurrentDir(new)))
+	if (!getcwd(CurrentDir(new), 0))
 	{
 	    if ( (dir = getenv("HOME")) )
 	    {
