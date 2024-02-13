@@ -324,6 +324,10 @@ OpenInfofile(file)
     FILE *inf;
     struct stat fstats;
     
+    char *s;
+    void *b;
+    int l;
+    
     if (currentfile)
     {
 	if (file != currentfile)
@@ -338,6 +342,36 @@ OpenInfofile(file)
     }
 
     inf = fopen(file, "r");
+
+#define PAGESIZE 4096
+    /* this is needed so that axinfo can read gzipped info files, the
+       preferred standard in Debian
+       Note that "currentfile" will be the name of the
+       file without the .gz extension
+     */
+    if (!inf){
+      s=(char*)malloc(sizeof(char)*(strlen(file)+15));
+      strcpy(s,"gunzip -c ");
+      strcat(s,file);
+      strcat(s,".gz");
+      inf=popen(s,"r");
+      if(inf){
+	buffer=malloc(PAGESIZE);
+	s=buffer;
+	while((l=fread(s,1,PAGESIZE,inf))==PAGESIZE){
+	  s+=PAGESIZE;
+	  l=s-(char*)buffer;
+	  buffer=realloc(buffer,l+PAGESIZE);
+	  s=buffer+l;
+	}
+	buflen=l+s-(char*)buffer;
+	buffer=realloc(buffer,buflen+1);
+	*((char*)buffer+buflen)=0;
+	currentfile = file;
+	fclose(inf);
+	return;
+      }
+    }
     if (!inf)
     {
 	Widget conf;

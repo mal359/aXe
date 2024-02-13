@@ -47,14 +47,14 @@ InfoLibdir = ${AxeLibdir}
 
 /* Uncomment the next but one line if you want to build an Xaw3d version */
 /* Please read the file INSTALL for essential information in this area */
-#define ThreeD
+/* #define ThreeD */
 
 /* ... and state the pathname of the directory containing the Xaw3d headers */
-#define Xaw3dIncDir /usr/include/X11/Xaw3d
+/* #define Xaw3dIncDir /usr/include/X11/Xaw3d */
 
 /* ... and where the Xaw3d library is to be found. This can be omitted */
 /* if the library is in the standard place in the installed X tree */
-#define Xaw3dLibDir /usr/lib/x86_64-linux-gnu
+/* #define Xaw3dLibDir /usr/lib/x86_64-linux-gnu */
 
 
 
@@ -109,7 +109,7 @@ TABLE_INCLUDES = -I/**/XpIncDir
     EXTN_OBJS = Language.o
 EXTN_INCLUDES = -I/**/TclIncDir
  EXTN_LDFLAGS = -L/**/TclLibDir
-    EXTN_LIBS = -ltcl8.7 -lm
+    EXTN_LIBS = -ltcl -lm
     EXTENSION = -DEXTENSION
 #endif
     EXTN_DEPS = AxeEditor.o axe.o

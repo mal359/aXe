@@ -397,7 +397,8 @@ int main(argc, argv)
     Boolean buffering, newWindow;
     String nameList = 0;
     XrmDatabase db;
-
+    
+    XtSetLanguageProc(NULL, NULL, NULL);
     top = XtVaAppInitialize(&app, "Axe",
                             options, XtNumber(options),
 #if defined(XtSpecificationRelease) && XtSpecificationRelease > 4

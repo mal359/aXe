@@ -38,7 +38,7 @@ all::
 
 # platform:  $XFree86: xc/config/cf/linux.cf,v 3.220 2003/12/30 22:38:33 tsi Exp $
 
-# operating system:  Linux 6.7-rt-amd64 x86_64 [ELF] (6.7.0)
+# operating system:  Linux 6.7-amd64 x86_64 [ELF] (6.7.0)
 # libc:	(6.38.0)
 # binutils:	(242)
 
@@ -1060,13 +1060,6 @@ R5ONLY_OBJS = Viewlist.o
     TABLE_OBJS = Table.o TableVec.o TableLoc.o
 
     EXTN_DEPS = AxeEditor.o axe.o
-
-XAW3D_INCLUDES = -I./X11/Xaw3d
-
- XAW3D_LDFLAGS = -L/usr/lib/x86_64-linux-gnu
-
-    XAW3D_LIBS = -lXaw3d
-         XAW3D = -DXAW3D
 
     XAW3D_DEPS = AxeCommand.o AxeMenuBtn.o AxeSmeBSB.o
 
