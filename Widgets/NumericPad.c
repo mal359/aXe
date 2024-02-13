@@ -192,7 +192,7 @@ Initialize(req, new, args, num_args)
 				      XtNsensitive, digit < 10 ? True : False,
 				      NULL);
 	XtAddCallback(button, XtNcallback, Type,
-		                            (XtPointer) ((int) digits[digit]));
+		                            (XtPointer) ((long int) digits[digit]));
     }
     SetSensitivity(new);
     
@@ -320,7 +320,6 @@ Type(widget, client_data, call_data)
      Widget widget;
      XtPointer client_data, call_data;
 {
-    char digit = (char) ((int) client_data);
     Widget text = ((NumericPadWidget) XtParent(widget))->pad.text_widget;
     XawTextBlock textBlock;
     XawTextPosition insertPos;
@@ -328,7 +327,7 @@ Type(widget, client_data, call_data)
     insertPos = XawTextGetInsertionPoint(text);
     textBlock.firstPos = 0;
     textBlock.length = 1;
-    textBlock.ptr = &digit;
+    textBlock.ptr = (char *) client_data;
     textBlock.format = FMT8BIT;
 
     XawTextReplace(text, insertPos, insertPos, &textBlock);

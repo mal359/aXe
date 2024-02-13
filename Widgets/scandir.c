@@ -52,7 +52,7 @@
 
 int 
 scandir(dirname, namelist, select, compar)
-     char *dirname;
+     const char *dirname;
      struct dirent ***namelist;
      int (*select)(), (*compar)();
 {
@@ -103,7 +103,8 @@ scandir(dirname, namelist, select, compar)
 
 int
 alphasort(d1, d2)
-     struct dirent **d1, **d2;
+     const struct dirent * const *d1;
+     const struct dirent * const *d2;
 {
     return(strcmp((*d1)->d_name, (*d2)->d_name));
 }

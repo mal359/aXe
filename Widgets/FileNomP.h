@@ -30,6 +30,7 @@
 #ifndef FileNominatorP_h
 #define FileNominatorP_h
 
+#include <X11/CompositeP.h>
 #include "FileNom.h"
 
 typedef struct {
@@ -46,6 +47,7 @@ typedef struct {
 
 typedef struct _FileNominatorClassRec {
     CoreClassPart	        core_class;
+    CompositeClassPart         composite_class;
     FileNominatorClassPart	fileNominator_class;
 } FileNominatorClassRec, *FileNominatorClass;
 
@@ -86,6 +88,7 @@ typedef struct {
 
 typedef struct _FileNominatorRec {
     CorePart		core;
+    CompositePart       composite;
     FileNominatorPart	fileNominator;
 } FileNominatorRec;
 

@@ -709,7 +709,6 @@ register regexp *prog;
 register char *string;
 {
 	register char *s;
-	extern char *strchr();
 
 	/* Be paranoid... */
 	if (prog == NULL || string == NULL) {
@@ -808,7 +807,6 @@ char *prog;
 {
 	register char *scan;	/* Current node. */
 	char *next;		/* Next node. */
-	extern char *strchr();
 
 	scan = prog;
 #ifdef DEBUG
@@ -997,7 +995,6 @@ char *p;
 	register int count = 0;
 	register char *scan;
 	register char *opnd;
-	extern char *strchr();
 
 	scan = reginput;
 	opnd = OPERAND(p);
@@ -1070,7 +1067,6 @@ regexp *r;
 	register char *s;
 	register char op = EXACTLY;	/* Arbitrary non-END op. */
 	register char *next;
-	extern char *strchr();
 
 
 	s = r->program + 1;

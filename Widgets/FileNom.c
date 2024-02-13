@@ -170,7 +170,7 @@ static Boolean SetValues();
 FileNominatorClassRec fileNominatorClassRec = {
     /* Core class part */
   {
-    /* superclass	     */	(WidgetClass) &widgetClassRec,
+    /* superclass	     */	(WidgetClass) &compositeClassRec,
     /* class_name	     */ "FileNominator",
     /* widget_size	     */ sizeof(FileNominatorRec),
     /* class_initialize      */ ClassInitialize,
@@ -202,6 +202,14 @@ FileNominatorClassRec fileNominatorClassRec = {
     /* query_geometry	     */	XtInheritQueryGeometry,
     /* display_accelerator   */	NULL,
     /* extension	     */	NULL,
+  },
+    /* Composite class part */
+  {
+    /* geometry_manager      */        XtInheritGeometryManager,
+    /* change_managed        */        XtInheritChangeManaged,
+    /* insert_child          */        XtInheritInsertChild,
+    /* delete_child          */        XtInheritDeleteChild,
+    /* extension             */        NULL,
   },
    /* FileNominator class part */
   {
@@ -768,7 +776,8 @@ MakeMenu(w, event, params, num_params)
     String menuName, menuList;
     Widget menu, menuEntry;
     char *where, *p1, *p2, *p, *q, *TopLevelDir;
-    int menuItem = 1, len;
+    long int menuItem = 1;
+    int len;
 
     XtVaGetValues(w,
 		  XtNmenuName, &menuName,
@@ -892,7 +901,7 @@ ChangeDir(w, client_data, call_data)
     FileNominatorWidget fnw
         = (FileNominatorWidget) XtParent(XtParent(XtParent(w)));
 
-    ChangeDirectory(fnw, (int) client_data);
+    ChangeDirectory(fnw, (long int) client_data);
 }
 
 /* ARGSUSED */

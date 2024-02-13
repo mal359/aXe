@@ -33,6 +33,7 @@
 #include <X11/StringDefs.h>	
 #include <AxeEditor.h>
 #include <AxeText.h>
+#include <stdlib.h>
 
 #include "AxeWindowP.h"
 

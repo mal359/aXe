@@ -319,10 +319,12 @@ Exit(widget, client_data, call_data)
 
 void
 OpenInfofile(file)
-     char *file;
+    const char *file;
 {
     FILE *inf;
     struct stat fstats;
+    int piped = 0;
+    long size = 0;
     
     char *s;
     void *b;
@@ -333,7 +335,7 @@ OpenInfofile(file)
 	if (file != currentfile)
 	{
 	    free(buffer);
-	    currentfile = 0;
+	    currentfile = NULL;
 	}
 	else
 	{
@@ -396,24 +398,30 @@ OpenInfofile(file)
 	perror("fstat");
 	exit(1);
     }
+    
+    if (piped)
+	fstats.st_size = size;
 
     if (!(buffer = malloc((unsigned) (fstats.st_size + 1))))
     {
-	printf("Out of memory\n");
+	fprintf(stderr, "Out of memory\n");
 	exit(1);
     }
 
     if (fread(buffer, (int) fstats.st_size, 1, inf) != 1)
     {
-	printf("Read error\n");
+	fprintf(stderr, "Read error\n");
 	exit(1);
     }
 
     buffer[fstats.st_size] = 0;
     buflen = fstats.st_size;
-    currentfile = file;
+    currentfile = (char*) file;
 
-    fclose(inf);
+    if (piped)
+	pclose(inf);
+    else
+	fclose(inf);
 }
 
 char*

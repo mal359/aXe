@@ -1368,7 +1368,7 @@ HyperWidget w;
 #define PEEKC()     (*sp)
 #define UNGETC(c)   (--sp)
 #define RETURN(c)   return;
-#define ERROR(c)    printf(stderr,"Warning regexp error %d\n",c)
+#define ERROR(c)    fprintf(stderr,"Warning regexp error %d\n",c)
 
 
 #include <regexp.h>

@@ -1927,7 +1927,8 @@ PopulateShowMenu(client_data)
 {
     WidgetList copyChildren;
     Cardinal numChildren;
-    int child, editor, windows, n;
+    int child, editor, n;
+    long int windows;
     AxeTextDeckList list, lst;
     String homeFile;
     Pixmap leftBitmap;

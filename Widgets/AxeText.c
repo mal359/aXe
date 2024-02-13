@@ -404,7 +404,7 @@ SourceChange(w, client_data, call_data)
 static void
 MessageNotify(w, code)
      Widget w;
-     int code;
+     long int code;
 {
     XtCallCallbackList(w, PRIVATE(w,message_callbacks), (XtPointer) code);
 }
@@ -479,7 +479,7 @@ NominateFile(widget, title, callback)
     Widget fileNom, nominator;
     XtCallbackList callbacks, callb;
     XtCallbackStatus callbackStatus;
-    int closure = 10101;
+    long int closure = 10101;
 
     if (!PRIVATE(widget,file_nominator))
     {
@@ -642,7 +642,6 @@ ControlEnter(widget, client_data, call_data)
      XtPointer client_data, call_data;
 {
     Widget axeText = AxeTextWidgetParentOf(widget);
-    char ch = (char) ((int) call_data);
     XawTextBlock textBlock;
     XawTextPosition insertPos;
     void (*proc)();
@@ -650,7 +649,7 @@ ControlEnter(widget, client_data, call_data)
     insertPos = XawTextGetInsertionPoint(axeText);
     textBlock.firstPos = 0;
     textBlock.length = 1;
-    textBlock.ptr = &ch;
+    textBlock.ptr = (char *) call_data;
     textBlock.format = FMT8BIT;
 
     if ( (proc = AxeiiTextUndoPreInsert(axeText)) )

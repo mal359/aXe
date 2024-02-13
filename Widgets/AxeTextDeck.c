@@ -397,7 +397,7 @@ Message(w, client_data, call_data)
      Widget w;
      XtPointer client_data, call_data;
 {
-    int code = (int) call_data;
+    long int code = (long int) call_data;
     Widget axeEditor = AxeEditorParentOf(w);
     
     switch (code)

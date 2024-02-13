@@ -245,7 +245,7 @@ Feed(widget)
     if (selection->list_index != XAW_LIST_NONE)
     {
 	XtCallCallbackList(ctrl, PRIVATE(ctrl,enter_callbacks),
-			                    (XtPointer) selection->list_index);
+			                    (XtPointer) ((long int) (selection->list_index)));
     }
 
     XtFree((char *) selection);

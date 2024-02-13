@@ -261,7 +261,7 @@ ShowMenuChange(widget, client_data, call_data)
      XtPointer client_data, call_data;
 {
     XtVaSetValues(widget,
-		  XtNsensitive, (int) call_data ? True : False,
+		  XtNsensitive, (long int) call_data ? True : False,
 		  NULL);
 }
 
