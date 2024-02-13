@@ -391,7 +391,7 @@ Initialize(req, new, args, num_args)
     int status;
     String dir;
     Dimension width, height;
-
+    
     List(new) = NULL;
     Nomination(new).directoryPart = NULL;
     Nomination(new).filenamePart = NULL;
@@ -409,7 +409,7 @@ Initialize(req, new, args, num_args)
 
     if (!(*(CurrentDir(new))))
     {
-	if (!getcwd(CurrentDir(new), 0))
+	if (!getcwd(CurrentDir(new), MAXPATHLEN))
 	{
 	    if ( (dir = getenv("HOME")) )
 	    {

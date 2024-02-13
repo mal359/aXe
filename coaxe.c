@@ -168,7 +168,7 @@ int main(argc, argv)
 	}
     }
 
-    if (!getcwd(cwd, 0))
+    if (!getcwd((cwd), MAXPATHLEN))
     {
 	fprintf(stderr, "Current directory unreadable\n" );
 	return(1);

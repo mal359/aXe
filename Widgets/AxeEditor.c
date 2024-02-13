@@ -428,7 +428,7 @@ ClassInitialize()
     CLASS(home_dir_len) = strlen(CLASS(home_dir));
 
     CLASS(current_dir) = XtMalloc(MAXPATHLEN);
-    if (!getcwd(CLASS(current_dir), 0))
+    if (!getcwd(CLASS(current_dir), MAXPATHLEN))
     {
 	if (CLASS(home_dir))
 	{
