@@ -110,10 +110,10 @@ WidgetClass portholeWidgetClass = (WidgetClass) &portholeClassRec;
  *****************************************************************************/
 
 static Widget find_child (pw)
-    register PortholeWidget pw;
+    PortholeWidget pw;
 {
-    register Widget *children;
-    register int i;
+    Widget *children;
+    int i;
 
     /*
      * Find the managed child on which we should operate.  Ignore multiple
@@ -200,7 +200,7 @@ static void layout_child (pw, child, geomp, xp, yp, widthp, heightp)
 
 
 static void Realize (gw, valueMask, attributes)
-    register Widget gw;
+    Widget gw;
     Mask *valueMask;
     XSetWindowAttributes *attributes;
 {
@@ -240,7 +240,7 @@ static XtGeometryResult QueryGeometry (gw, intended, preferred)
     Widget gw;
     XtWidgetGeometry *intended, *preferred;
 {
-    register PortholeWidget pw = (PortholeWidget) gw;
+    PortholeWidget pw = (PortholeWidget) gw;
     Widget child = find_child (pw);
 
     if (child) {

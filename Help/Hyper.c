@@ -1047,7 +1047,7 @@ void HyperSetTags(HyperWidget widget,
 /*-----------------------------------------------------------------------*/
 
 static void lowcase(p)
-register char *p;
+char *p;
 {
     while(*p)
     {
@@ -1363,7 +1363,7 @@ HyperWidget w;
 
 /* regexp macros ... see "man regexp" */
 
-#define INIT        register char *sp = instring;
+#define INIT        char *sp = instring;
 #define GETC()      (*sp++)
 #define PEEKC()     (*sp)
 #define UNGETC(c)   (--sp)
